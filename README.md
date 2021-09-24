@@ -15,7 +15,9 @@ placed at the locations of the associated tiles within the source whole slide im
 This framework has shown state-of-the-art performance for subtype classification compared to 
 conventional multiple instance learning approaches.
 
-<img src="img/sparseconvmil_architecture.png" alt="Schematic representation of SparseConvMIL, with a 2-layers sparse-input CNN" width="500"/>
+<p align="center">
+    <img src="img/sparseconvmil_architecture.png" alt="Schematic representation of SparseConvMIL, with a 2-layers sparse-input CNN" width="750"/>
+</p>p>
 
 ## Hello world
 
