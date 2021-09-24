@@ -17,7 +17,7 @@ conventional multiple instance learning approaches.
 
 <p align="center">
     <img src="img/sparseconvmil_architecture.png" alt="Schematic representation of SparseConvMIL, with a 2-layers sparse-input CNN" width="600"/>
-</p>p>
+</p>
 
 ## Hello world
 
