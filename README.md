@@ -25,6 +25,10 @@ To run the demo version:
 
 `python -m training`
 
+More info about the hyper-parameters with:
+
+`python -m training --help`
+
 All models, including the tile embedder, the sparse-input pooling, the WSI embedding classifier and 
 SparseConvMIL are located within the [model.py](model.py) file.
 If you want to change one of several of these, check this file!
