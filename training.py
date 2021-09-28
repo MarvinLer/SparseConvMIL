@@ -61,6 +61,7 @@ def _define_args():
         'wsi_embedding_classifier_n_inner_neurons': args.wsi_embedding_classifier_n_inner_neurons,
         'batch_size': args.batch_size,
         'n_tiles_per_wsi': args.n_tiles_per_wsi,
+        'j': args.j,
     }
 
     return hyper_parameters
@@ -106,13 +107,15 @@ def perform_epoch(mil_model, dataloader, optimizer, loss_function):
 
 def main(hyper_parameters):
     # Loads dataset and dataloader
+    print('Loading data')
     dataset = Dataset(hyper_parameters['slide_parent_folder'], hyper_parameters['slide_labels_filepath'],
                       hyper_parameters['n_tiles_per_wsi'])
     n_classes = dataset.n_classes
-    dataloader = get_dataloader(dataset, hyper_parameters['batch_size'], True,
-                                hyper_parameters['tile_embedder_pretrained'])
+    dataloader = get_dataloader(dataset, hyper_parameters['batch_size'], True, hyper_parameters['j'])
+    print('  done')
 
     # Loads MIL model, optimizer and loss function
+    print('Loading SparseConvMIL model')
     sparseconvmil_model = instantiate_sparseconvmil(hyper_parameters['tile_embedder'],
                                                     hyper_parameters['tile_embedder_pretrained'],
                                                     hyper_parameters['sparse_conv_n_channels_conv1'],
@@ -121,15 +124,17 @@ def main(hyper_parameters):
                                                     hyper_parameters['wsi_embedding_classifier_n_inner_neurons'],
                                                     n_classes)
     sparseconvmil_model = torch.nn.DataParallel(sparseconvmil_model)
+    print('  done')
     optimizer = torch.optim.Adam(sparseconvmil_model.parameters(), hyper_parameters['lr'],
                                  weight_decay=hyper_parameters['reg'])
     loss_function = torch.nn.CrossEntropyLoss()
 
     # Loop through all epochs
+    print('Starting training...')
     for epoch in range(hyper_parameters["epochs"]):
         loss, bac = perform_epoch(sparseconvmil_model, dataloader, optimizer, loss_function)
         print('Epoch', f'{epoch:3d}/{hyper_parameters["epochs"]}', f'    loss={loss:.3f}', f'    bac={bac:.3f}')
-
+    print('  done')
 
 if __name__ == '__main__':
     main(_define_args())
