@@ -1,6 +1,6 @@
 # SparseConvMIL
 Library for ["Sparse Convolutional Context-Aware Multiple Instance Learning for Whole Slide Image 
-Classification"](https://arxiv.org/abs/2105.02726) (COMPAY 2021).
+Classification"](paper_SparseConvMIL.pdf) (Best paper at the MICCAI workshop on Computational Pathology 2021).
 
 This repository contains the full kit for training SparseConvMIL with any type of ResNet architecture as
 tile embedder.
@@ -59,15 +59,23 @@ bash develop.sh
 If you find this code useful in your research then please cite:
 
 ["Sparse Convolutional Context-Aware Multiple Instance Learning for Whole Slide Image 
-Classification, COMPAY 2021"](https://arxiv.org/abs/2105.02726).
+Classification, COMPAY 2021"](https://proceedings.mlr.press/v156/lerousseau21a.html).
 
 ```
-@article{lerousseau2021sparse,
-  title={Sparse convolutional context-aware multiple instance learning for whole slide image classification},
-  author={Lerousseau, Marvin and Vakalopoulou, Maria and Paragios, Nikos and Deutsch, Eric},
-  journal={arXiv preprint arXiv:2105.02726},
-  year={2021}
+@inproceedings{lerousseau2021sparseconvmil,
+  title={SparseConvMIL: Sparse Convolutional Context-Aware Multiple Instance Learning for Whole Slide Image Classification},
+  author={Lerousseau, Marvin and Vakalopoulou, Maria and Deutsch, Eric and Paragios, Nikos},
+  booktitle={MICCAI Workshop on Computational Pathology},
+  pages={129--139},
+  year={2021},
+  organization={PMLR}
 }
+```
+
+```
+Lerousseau, M., Vakalopoulou, M., Deutsch, E. and Paragios, N., 2021, September. 
+SparseConvMIL: Sparse Convolutional Context-Aware Multiple Instance Learning for Whole Slide Image Classification. 
+In MICCAI Workshop on Computational Pathology (pp. 129-139). PMLR.
 ```
 
 ## License
